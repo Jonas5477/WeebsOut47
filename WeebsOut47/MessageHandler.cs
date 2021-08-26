@@ -21,19 +21,20 @@ namespace WeebsOut47.Twitch.Messages
         {
             if (ChatMessage.Message.StartsWith("§"))
             {
-                if (ChatMessage.Message.Contains("github"))
+                string message = ChatMessage.Message[1..].ToLower(); 
+                if (message.StartsWith("github"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, "Repository of WeebsOut47 github.com/Jonas5477/WeebsOut47");
                 }
-                if (ChatMessage.Message.Contains("help"))
+                if (message.StartsWith("help"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"All posible commands 👉 github.com/Jonas5477/WeebsOut47/blob/master/README.md");
                 }
-                if (ChatMessage.Message.Contains("ping"))
+                if (message.StartsWith("ping"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, "pong");
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, "pong ");
                 }
-                if (ChatMessage.Message.Contains("color"))
+                if (message.StartsWith("color"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your {ChatMessage.Color} has the Hex Code {ChatMessage.ColorHex}");
                 }
@@ -42,7 +43,7 @@ namespace WeebsOut47.Twitch.Messages
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, " M OMEGALUL DS");
                 }
             }
-            if (ChatMessage.Message.Contains("ayaya"))
+            if (ChatMessage.Message.ToLower().Contains("ayaya"))
             {
                 if (ChatMessage.IsModerator)
                 {
