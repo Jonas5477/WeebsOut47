@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using TwitchLib.Client.Models;
+using TwitchLib.Client.Models; 
 
 namespace WeebsOut47.Twitch.Messages
 {
@@ -19,9 +19,16 @@ namespace WeebsOut47.Twitch.Messages
         public void Handle()
 
         {
-
             if (ChatMessage.Message.StartsWith("§"))
             {
+                if (ChatMessage.Message.Contains("github"))
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, "Repository of WeebsOut47 github.com/Jonas5477/WeebsOut47");
+                }
+                if (ChatMessage.Message.Contains("help"))
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"All posible commands 👉 github.com/Jonas5477/WeebsOut47/blob/master/README.md");
+                }
                 if (ChatMessage.Message.Contains("ping"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, "pong");
@@ -48,7 +55,7 @@ namespace WeebsOut47.Twitch.Messages
             }
             if (Accountinfo.Weebs.Split().ToList().Contains(ChatMessage.Username))
             {
-                if (3000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
+                if (600000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"We lost {ChatMessage.Username} PepeHands");
                     _timeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
