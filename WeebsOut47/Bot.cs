@@ -37,7 +37,7 @@ namespace WeebsOut47
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
             new MessageHandler(this, e.ChatMessage).Handle();
-            Console.WriteLine($"{e.ChatMessage.Channel}: {e.ChatMessage.Message}");
+            Console.WriteLine($"{e.ChatMessage.Channel}-> {e.ChatMessage.Username}: {e.ChatMessage.Message}");
         }
 
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
