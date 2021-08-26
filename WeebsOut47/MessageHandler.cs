@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using TwitchLib.Client.Models;
 
 namespace WeebsOut47.Twitch.Messages
@@ -12,8 +13,13 @@ namespace WeebsOut47.Twitch.Messages
             ChatMessage = chatMessage;
             WeebsOut = bot;
         }
+
+        private static long _timeStamp = 0;
+
         public void Handle()
+
         {
+
             if (ChatMessage.Message.StartsWith("§"))
             {
                 if (ChatMessage.Message.Contains("ping"))
@@ -42,7 +48,11 @@ namespace WeebsOut47.Twitch.Messages
             }
             if (Accountinfo.Weebs.Split().ToList().Contains(ChatMessage.Username))
             {
-                WeebsOut.Client.SendMessage(ChatMessage.Channel, $"We lost {ChatMessage.Username} PepeHands");
+                if (3000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"We lost {ChatMessage.Username} PepeHands");
+                    _timeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                }
             }
         }
     }
