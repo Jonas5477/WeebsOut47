@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace WeebsOut47
 {
@@ -7,7 +8,6 @@ namespace WeebsOut47
         private static void Main()
         {
             _ = new Bot();
-
             Console.ReadLine();
         }
     }
