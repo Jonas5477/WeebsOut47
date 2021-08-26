@@ -2,11 +2,13 @@
 
 namespace WeebsOut47
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Hello World!");
+            _ = new Bot();
+
+            Console.ReadLine();
         }
     }
 }
