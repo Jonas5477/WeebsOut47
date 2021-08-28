@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using TwitchLib.Client.Models; 
+using TwitchLib.Client.Models;
 
 namespace WeebsOut47.Twitch.Messages
 {
@@ -21,7 +21,7 @@ namespace WeebsOut47.Twitch.Messages
         {
             if (ChatMessage.Message.StartsWith("§"))
             {
-                string message = ChatMessage.Message[1..].ToLower(); 
+                string message = ChatMessage.Message[1..].ToLower();
                 if (message.StartsWith("github"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, "Repository of WeebsOut47 github.com/Jonas5477/WeebsOut47");
@@ -40,23 +40,29 @@ namespace WeebsOut47.Twitch.Messages
                 }
                 if (ChatMessage.IsModerator)
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, " M OMEGALUL DS");
+                    if (600000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, " M OMEGALUL DS");
+                    }
                 }
             }
             if (ChatMessage.Message.ToLower().Contains("ayaya"))
             {
-                if (ChatMessage.IsModerator)
+                if (600000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, "WEEBS OUT DansGame");
-                }
-                else
-                {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"/timeout {ChatMessage.Username} 10s");
+                    if (ChatMessage.IsModerator)
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, "WEEBS OUT DansGame");
+                    }
+                    else
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"/timeout {ChatMessage.Username} 10s");
+                    }
                 }
             }
             if (Accountinfo.Weebs.Split().ToList().Contains(ChatMessage.Username))
             {
-                if (600000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
+                if (60000000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"We lost {ChatMessage.Username} PepeHands");
                     _timeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
