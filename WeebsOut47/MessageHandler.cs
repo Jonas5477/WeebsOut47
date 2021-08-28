@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TwitchLib.Client.Models;
 
@@ -15,6 +16,8 @@ namespace WeebsOut47.Twitch.Messages
         }
 
         private static long _timeStamp = 0;
+        private static string _user;
+        Dictionary<long, string> openWith = new();
 
         public void Handle()
 
