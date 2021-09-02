@@ -41,6 +41,11 @@ namespace WeebsOut47.Twitch.Messages
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your {ChatMessage.Color} has the Hex Code {ChatMessage.ColorHex}");
                 }
+                if (message.StartsWith("id")) 
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your ID is {ChatMessage.UserId} and the ID of this Chat Room is {ChatMessage.RoomId} FeelsOkayMan");
+
+                }
                 if (ChatMessage.IsModerator)
                 {
                     if (600000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
