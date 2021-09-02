@@ -44,7 +44,21 @@ namespace WeebsOut47.Twitch.Messages
                 if (message.StartsWith("id")) 
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your ID is {ChatMessage.UserId} and the ID of this Chat Room is {ChatMessage.RoomId} FeelsOkayMan");
-
+                }
+                if (message.StartsWith("test"))
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{ChatMessage.IsSubscriber}");
+                }
+                if (message.StartsWith("sub"))
+                {
+                    if (ChatMessage.IsSubscriber)
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{ChatMessage.Username} is currently subscribing and has subcribed for {ChatMessage.SubscribedMonthCount} Months FeelsGoodMan");
+                    }
+                    else
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"DansGame {ChatMessage.Username} isn't subscribing at the moment DansGame total months subscribed: {ChatMessage.SubscribedMonthCount} FeelsWeirdMan");
+                    }
                 }
                 if (ChatMessage.IsModerator)
                 {
