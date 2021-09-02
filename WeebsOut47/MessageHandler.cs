@@ -71,6 +71,18 @@ namespace WeebsOut47.Twitch.Messages
                     _timeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 }
             }
+            if (ChatMessage.Message.ToLower().Contains(" batchest "))
+            {
+                if (60000000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _timeStamp)
+                {
+                    if (ChatMessage.Username == " jann_amh_ ")
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $" JannGa ");
+                        _timeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                    }
+                }
+            }
         }
     }
 }
+
