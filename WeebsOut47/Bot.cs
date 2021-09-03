@@ -57,6 +57,14 @@ namespace WeebsOut47
         {
             long Ergebnis = Reboot - now;
             return Ergebnis;
+            double tage = Ergebnis / 8.64e+7;
+            Ergebnis = (long)(Ergebnis % 8.64e+7);
+            double stunden = Ergebnis / 3.6e6;
+            Ergebnis = (long)(Ergebnis % 3.6e6);
+            double minuten = Ergebnis / 60000;
+            Ergebnis = (long)(Ergebnis % 60000);
+            double sekunden = Ergebnis / 1000;
+            Ergebnis = (long)(Ergebnis % 1000);
         }
     }
 }
