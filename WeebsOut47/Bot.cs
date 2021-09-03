@@ -53,18 +53,21 @@ namespace WeebsOut47
         {
             Console.WriteLine("Connected");
         }
-        public static long Uptime(long Reboot, long now)
+        public static long Uptime(double Reboot, double now)
         {
-            long Ergebnis = Reboot - now;
-            return Ergebnis;
-            double tage = Ergebnis / 8.64e+7;
-            Ergebnis = (long)(Ergebnis % 8.64e+7);
-            double stunden = Ergebnis / 3.6e6;
-            Ergebnis = (long)(Ergebnis % 3.6e6);
-            double minuten = Ergebnis / 60000;
-            Ergebnis = (long)(Ergebnis % 60000);
-            double sekunden = Ergebnis / 1000;
-            Ergebnis = (long)(Ergebnis % 1000);
+            double Ergebnis = Reboot - now;
+            return (long)Ergebnis;
+            
+            //double tage = Ergebnis / 8.64e+7;
+            //Ergebnis = (long)(Ergebnis % 8.64e+7);
+            //double stunden = Ergebnis / 3.6e6;
+            //Ergebnis = (long)(Ergebnis % 3.6e6);
+            //double minuten = Ergebnis / 60000;
+            //Ergebnis = (long)(Ergebnis % 60000);
+            //double sekunden = Ergebnis / 1000;
+            //Ergebnis = (long)(Ergebnis % 1000);
+
+            //Console.WriteLine($"WeebsOut47 ist jetzt seit {tage}d {stunden}h {minuten}min und {sekunden}sek online Okayge");          
         }
     }
 }
