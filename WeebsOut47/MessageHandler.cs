@@ -42,8 +42,7 @@ namespace WeebsOut47.Twitch.Messages
                 }
                 if (message.StartsWith("uptime"))
                 {
-                    Bot.Uptime(DateTimeOffset.Now.ToUnixTimeMilliseconds(), Bot._timer);
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"WeebsOut47 ist jetzt seit ");
+                     Bot.Uptime(DateTimeOffset.Now.ToUnixTimeMilliseconds(), Bot._timer);
                 }
                 if (message.StartsWith("color"))
                 {
