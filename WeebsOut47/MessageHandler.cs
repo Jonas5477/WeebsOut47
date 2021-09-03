@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using TwitchLib.Client.Models;
 
+
+
 namespace WeebsOut47.Twitch.Messages
 {
     public class MessageHandler
@@ -14,7 +16,6 @@ namespace WeebsOut47.Twitch.Messages
             ChatMessage = chatMessage;
             WeebsOut = bot;
         }
-
         private static long _ayaya = 0;
         private static long _user = 0;
         private static long _mods = 0;
@@ -38,6 +39,10 @@ namespace WeebsOut47.Twitch.Messages
                 if (message.StartsWith("ping"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, "pong ");
+                }
+                if (message.StartsWith("uptime"))
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"WeebsOut47 ist jetzt seit {Bot.Uptime(DateTimeOffset.Now.ToUnixTimeMilliseconds(), Bot._timer)} Millisekunden online");
                 }
                 if (message.StartsWith("color"))
                 {
