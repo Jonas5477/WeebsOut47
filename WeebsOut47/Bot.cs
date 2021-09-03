@@ -1,20 +1,26 @@
-﻿using WeebsOut47.Twitch.Messages;
-using System;
+﻿using System;
 using System.Linq;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
 using TwitchLib.Communication.Clients;
 using TwitchLib.Communication.Models;
+using WeebsOut47.Twitch.Messages;
+
 
 namespace WeebsOut47
 {
     public class Bot
     {
         public TwitchClient Client { get; private set; }
+        public static long _timer { get; set; } = 0;
+
 
         public Bot()
         {
+            _timer = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            
+
             ConnectionCredentials credentials = new(Accountinfo.Name, Accountinfo.Token);
             ClientOptions clientOptions = new()
             {
@@ -33,23 +39,24 @@ namespace WeebsOut47
 
             Client.Connect();
         }
-
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
             new MessageHandler(this, e.ChatMessage).Handle();
             Console.WriteLine($"{e.ChatMessage.Channel}-> {e.ChatMessage.Username}: {e.ChatMessage.Message}");
         }
-
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
         {
             Console.WriteLine($"Connected to {e.Channel}");
             Client.SendMessage(e.Channel, "");
-
         }
-
         private void Client_OnConnected(object sender, OnConnectedArgs e)
         {
             Console.WriteLine("Connected");
+        }
+        public static long Uptime(long Reboot, long now)
+        {
+            long Ergebnis = Reboot - now;
+            return Ergebnis;
         }
     }
 }
