@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TwitchLib.Client.Models;
+using WeebsOut47.Commands;
 
 
 
@@ -50,38 +51,27 @@ namespace WeebsOut47.Twitch.Messages
                 }
                 if (message.StartsWith("help"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"All posible commands 👉 github.com/Jonas5477/WeebsOut47/blob/master/README.md");
+                    new HelpCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (message.StartsWith("ping"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, "pong ");
+                    new PingCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (message.StartsWith("uptime"))
                 {
-                    Bot.Uptime(DateTimeOffset.Now.ToUnixTimeMilliseconds(), Bot._timer);
+                    new UptimeCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (message.StartsWith("color"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your {ChatMessage.Color} has the Hex Code {ChatMessage.ColorHex}");
+                    new ColorCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (message.StartsWith("id"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your ID is {ChatMessage.UserId} and the ID of this Chat Room is {ChatMessage.RoomId} FeelsOkayMan");
-                }
-                if (message.StartsWith("test"))
-                {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{ChatMessage.TmiSentTs}");
+                    new IdCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (message.StartsWith("sub"))
                 {
-                    if (ChatMessage.IsSubscriber)
-                    {
-                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{ChatMessage.Username} is currently subscribing and has subcribed for {ChatMessage.SubscribedMonthCount} Months FeelsGoodMan");
-                    }
-                    else
-                    {
-                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"DansGame {ChatMessage.Username} isn't subscribing at the moment DansGame total months subscribed: {ChatMessage.SubscribedMonthCount} FeelsWeirdMan");
-                    }
+                    new SubCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (ChatMessage.IsModerator)
                 {
