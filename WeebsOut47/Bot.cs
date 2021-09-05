@@ -60,14 +60,16 @@ namespace WeebsOut47
             
             //double tage = Ergebnis / 8.64e+7;
             //Ergebnis = (long)(Ergebnis % 8.64e+7);
+
             //double stunden = Ergebnis / 3.6e6;
             //Ergebnis = (long)(Ergebnis % 3.6e6);
+
             //double minuten = Ergebnis / 60000;
             //Ergebnis = (long)(Ergebnis % 60000);
             //double sekunden = Ergebnis / 1000;
             //Ergebnis = (long)(Ergebnis % 1000);
 
-            //Console.WriteLine($"WeebsOut47 ist jetzt seit {tage}d {stunden}h {minuten}min und {sekunden}sek online Okayge");          
+            //Console.WriteLine($"WeebsOut47 ist jetzt seit {tage}d {stunden}h {minuten}min und {sekunden}sek online Okayge");
         }
     }
 }
