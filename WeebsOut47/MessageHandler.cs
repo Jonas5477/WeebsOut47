@@ -46,7 +46,7 @@ namespace WeebsOut47.Twitch.Messages
                 }
                 if (message.StartsWith("github"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, "Repository of WeebsOut47 github.com/Jonas5477/WeebsOut47");
+                    new GithubCommand(WeebsOut, ChatMessage).SendMessage();
                 }
                 if (message.StartsWith("help"))
                 {
