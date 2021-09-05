@@ -36,13 +36,19 @@ namespace WeebsOut47
             Client.OnConnected += Client_OnConnected;
             Client.OnJoinedChannel += Client_OnJoinedChannel;
             Client.OnMessageReceived += Client_OnMessageReceived;
-
+            Client.OnMessageSent += Client_OnMessageSent;
             Client.Connect();
         }
+
+        private void Client_OnMessageSent(object sender, OnMessageSentArgs e)
+        {
+            Console.WriteLine($"{e.SentMessage.Channel}-> {e.SentMessage.DisplayName}: {e.SentMessage.Message}");
+        }
+
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
             new MessageHandler(this, e.ChatMessage).Handle();
-            Console.WriteLine($"{e.ChatMessage.Channel}-> {e.ChatMessage.Username}: {e.ChatMessage.Message}");
+            Console.WriteLine($"{e.ChatMessage.Channel}-> {e.ChatMessage.DisplayName}: {e.ChatMessage.Message}");
         }
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
         {
