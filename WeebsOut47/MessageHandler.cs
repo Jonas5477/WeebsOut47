@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HLE.Emojis;
+using HLE.Strings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TwitchLib.Client.Models;
@@ -28,6 +30,20 @@ namespace WeebsOut47.Twitch.Messages
             if (ChatMessage.Message.StartsWith("§"))
             {
                 string message = ChatMessage.Message[1..].ToLower();
+                if (message.StartsWith("chatter"))
+                {
+                    string channel;
+                    if (ChatMessage.Message.Split().Length > 1)
+                    {
+                        channel = message.Split()[1];
+                    }
+                    else
+                    {
+                        channel = ChatMessage.Channel;
+                    }
+                    List<string> chatter = ApiRequests.GetChatters(channel);
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $"In dem chat von {channel} sind {chatter.Count} Chatter {Emoji.PointRight} {chatter.ToSequence()}");
+                }
                 if (message.StartsWith("github"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, "Repository of WeebsOut47 github.com/Jonas5477/WeebsOut47");
@@ -42,13 +58,13 @@ namespace WeebsOut47.Twitch.Messages
                 }
                 if (message.StartsWith("uptime"))
                 {
-                     Bot.Uptime(DateTimeOffset.Now.ToUnixTimeMilliseconds(), Bot._timer);
+                    Bot.Uptime(DateTimeOffset.Now.ToUnixTimeMilliseconds(), Bot._timer);
                 }
                 if (message.StartsWith("color"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your {ChatMessage.Color} has the Hex Code {ChatMessage.ColorHex}");
                 }
-                if (message.StartsWith("id")) 
+                if (message.StartsWith("id"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Your ID is {ChatMessage.UserId} and the ID of this Chat Room is {ChatMessage.RoomId} FeelsOkayMan");
                 }
@@ -99,13 +115,13 @@ namespace WeebsOut47.Twitch.Messages
                     _user = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                 }
             }
-            if (ChatMessage.Message.ToLower().Contains(" batchest "))
+            if (ChatMessage.Message.ToLower().Contains("batchest"))
             {
                 if (60000000 < DateTimeOffset.Now.ToUnixTimeMilliseconds() - _bat)
                 {
-                    if (ChatMessage.Username == " jann_amh_ ")
+                    if (ChatMessage.Username == "jann_amh_")
                     {
-                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $" JannGa ");
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"JannGa");
                         _bat = DateTimeOffset.Now.ToUnixTimeMilliseconds();
                     }
                 }
