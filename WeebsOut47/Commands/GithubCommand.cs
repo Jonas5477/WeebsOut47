@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TwitchLib.Client.Models;
 
-namespace WeebsOut47
+namespace WeebsOut47.Commands
 {
     class GithubCommand : Command
     {
