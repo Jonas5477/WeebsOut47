@@ -2,6 +2,7 @@
 using HLE.Strings;
 using System.Collections.Generic;
 using System.Text.Json;
+using HLE.HttpRequests;
 namespace WeebsOut47
 {
     class ApiRequests
