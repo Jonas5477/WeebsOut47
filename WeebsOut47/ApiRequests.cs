@@ -12,7 +12,6 @@ namespace WeebsOut47
             HttpGet request = new($"https://tmi.twitch.tv/group/user/{channel.Remove("#")}/chatters");
             return request.Data.GetProperty("chatter_count").GetInt32();
         }
-
         public static List<string> GetChatters(string channel)
         {
             HttpGet request = new($"https://tmi.twitch.tv/group/user/{channel.Remove("#")}/chatters");
