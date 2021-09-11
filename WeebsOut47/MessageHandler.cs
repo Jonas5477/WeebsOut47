@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using TwitchLib.Client.Models;
 using WeebsOut47.Commands;
 using WeebsOut47.MessageCommands;
@@ -15,7 +14,6 @@ namespace WeebsOut47.Twitch.Messages
             ChatMessage = chatMessage;
             WeebsOut = bot;
         }
-        Dictionary<long, string> openWith = new();
         public void Handle()
         {
             if (ChatMessage.Message.StartsWith("§"))
