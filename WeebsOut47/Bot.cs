@@ -29,7 +29,24 @@ namespace WeebsOut47
             Client.OnJoinedChannel += Client_OnJoinedChannel;
             Client.OnMessageReceived += Client_OnMessageReceived;
             Client.OnMessageSent += Client_OnMessageSent;
+            Client.OnConnectionError += Client_OnConnectionError;
+            Client.OnDisconnected += Client_OnDisconnected;
+            Client.OnError += Client_OnError;
             Client.Connect();
+        }
+        private void Client_OnError(object sender, TwitchLib.Communication.Events.OnErrorEventArgs e)
+        {
+            Console.WriteLine($"Error detected");
+        }
+
+        private void Client_OnDisconnected(object sender, TwitchLib.Communication.Events.OnDisconnectedEventArgs e)
+        {
+            Console.WriteLine("Bot disconnected");
+        }
+
+        private void Client_OnConnectionError(object sender, OnConnectionErrorArgs e)
+        {
+            Console.WriteLine("ConnectionError detected");
         }
         private void Client_OnMessageSent(object sender, OnMessageSentArgs e)
         {
