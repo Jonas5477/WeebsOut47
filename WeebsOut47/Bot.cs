@@ -31,19 +31,30 @@ namespace WeebsOut47
             Client.OnMessageSent += Client_OnMessageSent;
             Client.OnConnectionError += Client_OnConnectionError;
             Client.OnDisconnected += Client_OnDisconnected;
+            Client.OnWhisperReceived += Client_OnWhisperReceived;
             Client.OnError += Client_OnError;
+            Client.OnLog += Client_OnLog;
             Client.Connect();
+        }
+
+        private void Client_OnLog(object sender, OnLogArgs e)
+        {
+           
+        }
+
+        private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
+        {
+            Console.WriteLine($"[WHISPER] --> {e.WhisperMessage.Username}: {e.WhisperMessage.Message}");
+            new WhisperHandler(this, e.WhisperMessage).Handle();
         }
         private void Client_OnError(object sender, TwitchLib.Communication.Events.OnErrorEventArgs e)
         {
             Console.WriteLine($"Error detected");
         }
-
         private void Client_OnDisconnected(object sender, TwitchLib.Communication.Events.OnDisconnectedEventArgs e)
         {
             Console.WriteLine("Bot disconnected");
         }
-
         private void Client_OnConnectionError(object sender, OnConnectionErrorArgs e)
         {
             Console.WriteLine("ConnectionError detected");
@@ -61,7 +72,7 @@ namespace WeebsOut47
         {
             Console.WriteLine($"Connected to {e.Channel}");
             Client.SendMessage(e.Channel, "");
-        }
+       }
         private void Client_OnConnected(object sender, OnConnectedArgs e)
         {
             Console.WriteLine("Connected");

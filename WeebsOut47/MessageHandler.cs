@@ -20,15 +20,11 @@ namespace WeebsOut47.Twitch.Messages
             {
                 new CommandHandler(WeebsOut, ChatMessage).SendMessage();
             }
-            else if (ChatMessage.Message.ToLower().Contains("ayaya"))
+            else if (ChatMessage.Message.ToLower().Contains(" ayaya "))
             {
                 new AyayaCommand(WeebsOut, ChatMessage).SendMessage(); 
             }
-            else if (Accountinfo.Weebs.Split().ToList().Contains(ChatMessage.Username))
-            {
-                new WeLostCommand(WeebsOut, ChatMessage).SendMessage();
-            }
-            else if (ChatMessage.Message.ToLower().Contains("batchest"))
+            else if (ChatMessage.Message.ToLower().Contains(" batchest "))
             {
                 new BatChestCommand(WeebsOut, ChatMessage).SendMessage();
             }
