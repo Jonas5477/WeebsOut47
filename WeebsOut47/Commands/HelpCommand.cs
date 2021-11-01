@@ -14,7 +14,7 @@ namespace WeebsOut47.Commands
         }
         public override void SendMessage()
         {
-            WeebsOut.Client.SendMessage(ChatMessage.Channel, $"All posible commands 👉 github.com/Jonas5477/WeebsOut47/blob/master/README.md");
+            WeebsOut.Client.SendMessage(ChatMessage.Channel, $"All possible commands 👉 github.com/Jonas5477/WeebsOut47/blob/master/README.md");
         }
     }
 }

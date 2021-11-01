@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-
 namespace WeebsOut47
 {
     public class Program
