@@ -1,9 +1,7 @@
-﻿using HLE.Emojis;
-using HLE.Strings;
-using System.Collections.Generic;
-using TwitchLib.Client.Models;
+﻿using TwitchLib.Client.Models;
+using WeebsOut47.Commands;
 
-namespace WeebsOut47.Commands
+namespace WeebsOut47.Handler
 {
     class CommandHandler : Command
     {
@@ -15,17 +13,11 @@ namespace WeebsOut47.Commands
             string message = ChatMessage.Message[1..].ToLower();
             if (message.StartsWith("chatter"))
             {
-                string channel;
-                if (ChatMessage.Message.Split().Length > 1)
-                {
-                    channel = message.Split()[1];
-                }
-                else
-                {
-                    channel = ChatMessage.Channel;
-                }
-                List<string> chatter = ApiRequests.GetChatters(channel);
-                WeebsOut.Client.SendMessage(ChatMessage.Channel, $"In dem chat von {channel} sind {chatter.Count} Chatter {Emoji.PointRight} {chatter.ToSequence()}");
+                new ChatterCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (message.StartsWith("math"))
+            {
+                new MathCommand(WeebsOut, ChatMessage).SendMessage();
             }
             else if (message.StartsWith("github"))
             {
@@ -54,6 +46,26 @@ namespace WeebsOut47.Commands
             else if (message.StartsWith("sub"))
             {
                 new SubCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (message.StartsWith("hangman"))
+            {
+                new HangmanCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (message.StartsWith("fox"))
+            {
+                new RandomPictureCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (message.StartsWith("bored"))
+            {
+                new BoredCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (message.StartsWith("weather"))
+            {
+                new WeatherCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (message.StartsWith("joke"))
+            {
+                new JokeCommand(WeebsOut, ChatMessage).SendMessage();
             }
         }
     }

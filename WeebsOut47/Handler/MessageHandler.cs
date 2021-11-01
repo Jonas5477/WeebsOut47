@@ -3,7 +3,7 @@ using TwitchLib.Client.Models;
 using WeebsOut47.Commands;
 using WeebsOut47.MessageCommands;
 
-namespace WeebsOut47.Twitch.Messages
+namespace WeebsOut47.Handler
 {
     public class MessageHandler
     {
@@ -22,13 +22,9 @@ namespace WeebsOut47.Twitch.Messages
             }
             else if (ChatMessage.Message.ToLower().Contains("ayaya"))
             {
-                new AyayaCommand(WeebsOut, ChatMessage).SendMessage(); 
+                new AyayaCommand(WeebsOut, ChatMessage).SendMessage();
             }
-            else if (Accountinfo.Weebs.Split().ToList().Contains(ChatMessage.Username))
-            {
-                new WeLostCommand(WeebsOut, ChatMessage).SendMessage();
-            }
-            else if (ChatMessage.Message.ToLower().Contains("batchest"))
+            else if (ChatMessage.Message.ToLower().Contains("batchest") || ChatMessage.Message.ToLower().Contains("hendrikchest"))
             {
                 new BatChestCommand(WeebsOut, ChatMessage).SendMessage();
             }
