@@ -1,5 +1,5 @@
-﻿using System;
-using TwitchLib.Client.Models;
+﻿using TwitchLib.Client.Models;
+using HLE.Time;
 
 namespace WeebsOut47.Commands
 {
@@ -10,7 +10,7 @@ namespace WeebsOut47.Commands
         }
         public override void SendMessage()
         {           
-            WeebsOut.Client.SendMessage(ChatMessage.Channel, Bot.Uptime().ToString());
+            WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Der Bot ist nun seit {TimeHelper.ConvertUnixTimeToTimeStamp(Bot.Uptime())} online DansGame FBBlock AYAYA");
         }
     }
 }
