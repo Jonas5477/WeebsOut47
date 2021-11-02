@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using TwitchLib.Client.Models;
 
 namespace WeebsOut47.Commands
@@ -14,11 +10,23 @@ namespace WeebsOut47.Commands
         }
         public override void SendMessage()
         {
-            string message = ChatMessage.Message[1..].ToLower();
-            string city = message.Split()[1];
-            if (message.StartsWith("weather"))
-            {               
-                WeebsOut.Client.SendMessage(ChatMessage.Channel, ApiRequests.GetWeather(city));
+            if (ChatMessage.Message.Length < 9)
+            {
+                WeebsOut.Client.SendMessage(ChatMessage.Channel, $"You have to use this format {HLE.Emojis.Emoji.PointRight} §weather [cityname] ");
+            }
+            else
+            {
+                string message = ChatMessage.Message[1..].ToLower();
+                string city = message.Split()[1];                    
+
+                if (Regex.IsMatch(city, @"^(?i)[a-züöä\-',.\s-]$"))
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, ApiRequests.GetWeather(city));                   
+                }
+                else
+                {
+                    WeebsOut.Client.SendMessage(ChatMessage.Channel, $" Pls use a real cityname :)");
+                }
             }
         }
     }
