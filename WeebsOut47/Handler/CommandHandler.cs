@@ -67,6 +67,10 @@ namespace WeebsOut47.Handler
             {
                 new JokeCommand(WeebsOut, ChatMessage).SendMessage();
             }
+            else if (message.StartsWith("wiki"))
+            {
+                new WikiCommand(WeebsOut, ChatMessage).SendMessage();
+            }
         }
     }
 }
