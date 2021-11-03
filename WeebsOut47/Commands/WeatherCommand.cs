@@ -19,7 +19,7 @@ namespace WeebsOut47.Commands
                 string message = ChatMessage.Message[1..].ToLower();
                 string city = message.Split()[1];                    
 
-                if (Regex.IsMatch(city, @"^(?i)[a-züöä\-',.\s-]$"))
+                if (Regex.IsMatch(city, @"^(?i)[\wüößä\-',.\s-]+$"))
                 {
                     WeebsOut.Client.SendMessage(ChatMessage.Channel, ApiRequests.GetWeather(city));                   
                 }

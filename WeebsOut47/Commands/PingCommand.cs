@@ -10,7 +10,7 @@ namespace WeebsOut47.Commands
 
         public override void SendMessage()
         {
-            WeebsOut.Client.SendMessage(ChatMessage.Channel, "DansGame ");
+            WeebsOut.Client.SendMessage(ChatMessage.Channel, "DansGame Stop pinging !?!!");
         }
     }
 }
