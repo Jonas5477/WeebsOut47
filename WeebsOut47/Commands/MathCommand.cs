@@ -10,8 +10,15 @@ namespace WeebsOut47.Commands
 
         public override void SendMessage()
         {
-            string rechnung = ChatMessage.Message[(ChatMessage.Message.Split()[0].Length + 1)..];
-            WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{rechnung} = {ApiRequests.GetMath(rechnung)}");
+            if(ChatMessage.Message.Split().Length <= 1)
+            {
+                WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Pls use the right format {HLE.Emojis.Emoji.PointRight} §math [Calculation]");
+            }
+            else
+            {
+                string rechnung = ChatMessage.Message[(ChatMessage.Message.Split()[0].Length + 1)..];
+                WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{rechnung} = {ApiRequests.GetMath(rechnung)}");
+            }
         }
     }
 }

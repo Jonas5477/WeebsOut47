@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HLE.Strings;
+using System;
 using System.Linq;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
@@ -45,8 +46,7 @@ namespace WeebsOut47
 
         private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
         {
-            string input = e.WhisperMessage.Message;
-            string whisper = new string(input.Where(c => !char.IsControl(c)).ToArray());
+            string whisper = e.WhisperMessage.Message.Remove("󠀀").TrimAll();
             Console.WriteLine($"[WHISPER] --> {e.WhisperMessage.Username}: {whisper}");
             new WhisperHandler(this, whisper).Handle();
         }

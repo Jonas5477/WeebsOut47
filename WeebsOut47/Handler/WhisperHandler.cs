@@ -12,14 +12,13 @@ namespace WeebsOut47.Handler
         public WhisperHandler(Bot bot, string whisper)
         {
             WeebsOut = bot;
-            string Hwhisper = whisper;
+            Hwhisper = whisper;
         }
         public Bot WeebsOut { get; }
         public string Hwhisper { get; }
         private static readonly Regex _message = new(@"^\w{4,}\s+[a-z]{4,12}$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromMilliseconds(250));
         public void Handle()
         {
-            Console.WriteLine("test1");
             if (_message.IsMatch(Hwhisper))
             {
                 string[] wmessage = Hwhisper.ToLower().Split();
