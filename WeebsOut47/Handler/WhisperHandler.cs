@@ -9,20 +9,20 @@ namespace WeebsOut47.Handler
 {
     public class WhisperHandler
     {
-        public WhisperHandler(Bot bot, WhisperMessage whisperMessage)
+        public WhisperHandler(Bot bot, string whisper)
         {
             WeebsOut = bot;
-            WhisperMessage = whisperMessage;
+            string Hwhisper = whisper;
         }
         public Bot WeebsOut { get; }
-        public WhisperMessage WhisperMessage { get; }
+        public string Hwhisper { get; }
         private static readonly Regex _message = new(@"^\w{4,}\s+[a-z]{4,12}$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromMilliseconds(250));
         public void Handle()
         {
             Console.WriteLine("test1");
-            if (_message.IsMatch(WhisperMessage.Message))
+            if (_message.IsMatch(Hwhisper))
             {
-                string[] wmessage = WhisperMessage.Message.ToLower().Split();
+                string[] wmessage = Hwhisper.ToLower().Split();
                 string keyword = wmessage[1];
                 string channel = wmessage[0];
                 Console.WriteLine(channel);

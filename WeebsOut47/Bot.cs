@@ -45,8 +45,10 @@ namespace WeebsOut47
 
         private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
         {
-            Console.WriteLine($"[WHISPER] --> {e.WhisperMessage.Username}: {e.WhisperMessage.Message}");
-            new WhisperHandler(this, e.WhisperMessage).Handle();
+            string input = e.WhisperMessage.Message;
+            string whisper = new string(input.Where(c => !char.IsControl(c)).ToArray());
+            Console.WriteLine($"[WHISPER] --> {e.WhisperMessage.Username}: {whisper}");
+            new WhisperHandler(this, whisper).Handle();
         }
         private void Client_OnError(object sender, TwitchLib.Communication.Events.OnErrorEventArgs e)
         {
