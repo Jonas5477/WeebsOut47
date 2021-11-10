@@ -6,10 +6,12 @@ namespace WeebsOut47.Commands
     {
         public Bot WeebsOut { get; }
         public ChatMessage ChatMessage { get; }
+        public string message { get; }
         public Command(Bot weebsout, ChatMessage chatMessage)
         {
             WeebsOut = weebsout;
             ChatMessage = chatMessage;
+            
         }
         public abstract void SendMessage();
     }
