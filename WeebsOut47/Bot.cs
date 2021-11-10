@@ -43,7 +43,11 @@ namespace WeebsOut47
         {
            
         }
-
+        private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
+        {
+            new MessageHandler(this, e.ChatMessage).Handle();
+            Console.WriteLine($"{e.ChatMessage.Channel}-> {e.ChatMessage.DisplayName}: {e.ChatMessage.Message}");
+        }
         private void Client_OnWhisperReceived(object sender, OnWhisperReceivedArgs e)
         {
             string whisper = e.WhisperMessage.Message.Remove("󠀀").TrimAll();
@@ -66,16 +70,11 @@ namespace WeebsOut47
         {
             Console.WriteLine($"{e.SentMessage.Channel}-> {e.SentMessage.DisplayName}: {e.SentMessage.Message}");
         }
-        private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
-        {
-            new MessageHandler(this, e.ChatMessage).Handle();
-            Console.WriteLine($"{e.ChatMessage.Channel}-> {e.ChatMessage.DisplayName}: {e.ChatMessage.Message}");
-        }
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
         {
             Console.WriteLine($"Connected to {e.Channel}");
             Client.SendMessage(e.Channel, "");
-       }
+        }
         private void Client_OnConnected(object sender, OnConnectedArgs e)
         {
             Console.WriteLine("Connected");
