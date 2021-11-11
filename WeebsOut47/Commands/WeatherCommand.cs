@@ -1,5 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using TwitchLib.Client.Models;
+using WeebsOut47.APIs;
+using WeebsOut47.Utilities;
 
 namespace WeebsOut47.Commands
 {
@@ -10,18 +12,26 @@ namespace WeebsOut47.Commands
         }
         public override void SendMessage()
         {
-            if (ChatMessage.Message.Length < 9)
+            if (ChatMessage.Message.Split().Length <= 1)
             {
                 WeebsOut.Client.SendMessage(ChatMessage.Channel, $"You have to use this format {HLE.Emojis.Emoji.PointRight} §weather [cityname] ");
             }
             else
             {
-                string message = ChatMessage.Message[1..].ToLower();
-                string city = message.Split()[1];                    
+                string message = ChatMessage.GetMessage()[1..].ToLower();
+                string name = message.Split()[1];                    
 
-                if (Regex.IsMatch(city, @"^(?i)[\wüößä\-',.\s-]+$"))
+                if (Regex.IsMatch(name, @"^(?i)[\wüößä\-',.\s-]+$"))
                 {
-                    WeebsOut.Client.SendMessage(ChatMessage.Channel, ApiRequests.GetWeather(city));                   
+                    WeatherAPI weatherAPI = ApiRequests.GetWeather(name);
+                    if ( weatherAPI == null)
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Unlucky THIS city doesnt exist :(");                   
+                    }
+                    else
+                    {
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{weatherAPI.Sys.SunsetOkayeg}");
+                    }
                 }
                 else
                 {
