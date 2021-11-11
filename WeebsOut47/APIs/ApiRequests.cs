@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Web;
 
 
-namespace WeebsOut47
+namespace WeebsOut47.APIs
 {
     class ApiRequests
     {
@@ -113,27 +113,19 @@ namespace WeebsOut47
                 }
             }
         }
-        public static string GetWeather(string city)
+        public static WeatherAPI GetWeather(string name)
         {
-            HttpGet request = new($"https://goweather.herokuapp.com/weather/{city}");
-            string temperature = request.Data.GetProperty("temperature").GetString();
-            string wind = request.Data.GetProperty("wind").GetString();
-            string description = request.Data.GetProperty("description").GetString();
-            if (string.IsNullOrEmpty(temperature))
+            HttpGet request = new($"http://api.openweathermap.org/data/2.5/weather?q={name}appid={Accountinfo.API_KeyWeather}");
+            WeatherAPI wetter = JsonSerializer.Deserialize<WeatherAPI>(request.Result);
+            System.Console.WriteLine(JsonSerializer.Serialize(wetter, new JsonSerializerOptions() { WriteIndented=true}));
+            bool Okayeg = request.Data.TryGetProperty("message", out JsonElement message);
+            if(Okayeg == true)
             {
-                return $"You have to enter a valid cityname!";
+                return null;
             }
             else
             {
-                if (request.ValidJsonData)
-                {
-                    return $"In {city.ToUpper()[0] + city.Substring(1)} the temperature is {temperature}. The wind velocity is {wind} and the weather is {description}";
-                }
-                else
-                {
-                    return request.Result;
-                }
-
+                return wetter;
             }
         }
     }
