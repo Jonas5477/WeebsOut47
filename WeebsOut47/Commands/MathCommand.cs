@@ -1,4 +1,5 @@
 ﻿using TwitchLib.Client.Models;
+using WeebsOut47.APIs;
 
 namespace WeebsOut47.Commands
 {

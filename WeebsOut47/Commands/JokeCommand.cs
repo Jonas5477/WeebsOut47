@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TwitchLib.Client.Models;
+using WeebsOut47.APIs;
 
 namespace WeebsOut47.Commands
 {

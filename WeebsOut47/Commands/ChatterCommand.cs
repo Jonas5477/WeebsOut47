@@ -3,6 +3,7 @@ using System.Linq;
 using HLE.Emojis;
 using HLE.Strings;
 using TwitchLib.Client.Models;
+using WeebsOut47.APIs;
 using WeebsOut47.Utilities;
 
 namespace WeebsOut47.Commands
