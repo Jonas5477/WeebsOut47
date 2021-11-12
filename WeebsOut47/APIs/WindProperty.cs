@@ -8,6 +8,8 @@ namespace WeebsOut47.APIs
         public double Speed { get; set; }               // in m/s
         [JsonPropertyName("deg")]
         public int Deg { get; set; }
+        [JsonPropertyName("gust")]
+        public double Gust { get; set; }
         [JsonIgnore]
         public string Direction
         {
