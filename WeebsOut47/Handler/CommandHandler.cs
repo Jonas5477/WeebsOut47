@@ -63,6 +63,10 @@ namespace WeebsOut47.Handler
             {
                 new WeatherCommand(WeebsOut, ChatMessage).SendMessage();
             }
+            else if (message.StartsWith("moreinfo"))
+            {
+                new MoreInfoCommand(WeebsOut, ChatMessage).SendMessage();
+            }
             else if (message.StartsWith("joke"))
             {
                 new JokeCommand(WeebsOut, ChatMessage).SendMessage();
