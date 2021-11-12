@@ -30,7 +30,7 @@ namespace WeebsOut47.Commands
                     }
                     else
                     {
-                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"{weatherAPI.Sys.SunsetOkayeg}");
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"The temparature in {weatherAPI.Name} is {weatherAPI.Main.CTemp}°C and the weather describtion is \"{weatherAPI.Weather[0].Description}\". The wind direction is {weatherAPI.Wind.Direction}. If you need more information try {HLE.Emojis.Emoji.PointRight}§moreinfo [cityname]");
                     }
                 }
                 else
