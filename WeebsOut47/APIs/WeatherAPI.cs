@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace WeebsOut47.APIs
@@ -38,6 +39,10 @@ namespace WeebsOut47.APIs
             {
                 return Timezone / 3600;
             }
+        }       
+        public double TimeAtEveryTimezone(long time)
+        {
+            return time - 3600 + Timezone;
         }
     }
 }
