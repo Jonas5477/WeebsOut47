@@ -34,6 +34,6 @@ namespace WeebsOut47.APIs
                 dateTime = dateTime.AddSeconds(Sunset).ToLocalTime();
                 return dateTime;
             }
-        }       
+        }
     }
 }
