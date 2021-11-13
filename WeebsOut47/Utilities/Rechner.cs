@@ -1,4 +1,7 @@
-﻿namespace WeebsOut47.Utilities
+﻿using System;
+using TwitchLib.Client.Models;
+
+namespace WeebsOut47.Utilities
 {
     public class Rechner
     {
