@@ -116,8 +116,6 @@ namespace WeebsOut47.APIs
         public static WeatherAPI GetWeather(string name)
         {
             HttpGet request = new($"http://api.openweathermap.org/data/2.5/weather?q={name}&appid={Accountinfo.API_KeyWeather}");
-            WeatherAPI wetter = JsonSerializer.Deserialize<WeatherAPI>(request.Result);
-            System.Console.WriteLine(JsonSerializer.Serialize(wetter, new JsonSerializerOptions() { WriteIndented=true}));
             bool Okayeg = request.Data.TryGetProperty("message", out JsonElement message);
             if(Okayeg == true)
             {
@@ -125,6 +123,7 @@ namespace WeebsOut47.APIs
             }
             else
             {
+                WeatherAPI wetter = JsonSerializer.Deserialize<WeatherAPI>(request.Result);
                 return wetter;
             }
         }
