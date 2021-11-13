@@ -21,7 +21,6 @@ namespace WeebsOut47.Commands
             {
                 string message = ChatMessage.GetMessage()[1..].ToLower();
                 string name = message.Split()[1];
-                DateTime now = DateTime.Now;
 
                 if (Regex.IsMatch(name, @"^(?i)[\wüößä\-',.\s-]+$"))
                 {
@@ -32,7 +31,13 @@ namespace WeebsOut47.Commands
                     }
                     else
                     {
-                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Cityname: {weatherAPI.Name} || Country: {weatherAPI.Sys.Country} || Current Time: {now:HH:mm:ss} || Timezone: GMT+{weatherAPI.RealTimezone} || Temperature: {weatherAPI.Main.CTemp}°C || Pressure: {weatherAPI.Main.Pressure}hPa || Humidity: {weatherAPI.Main.Humidity}% || Clouds: {weatherAPI.Clouds.All}% || Sunrise: {weatherAPI.Sys.SunriseOkayge:HH:mm} Uhr || Sunset: {weatherAPI.Sys.SunsetOkayeg:HH:mm} Uhr");
+                        double now = weatherAPI.TimeAtEveryTimezone(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+                        DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                        dateTime = dateTime.AddSeconds(now).ToLocalTime();
+                        Console.WriteLine(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+                        Console.WriteLine(now);
+                        Console.WriteLine(dateTime);
+                        WeebsOut.Client.SendMessage(ChatMessage.Channel, $"Cityname: {weatherAPI.Name} || Country: {weatherAPI.Sys.Country} || Current Time: {dateTime:HH:mm:ss} || Timezone: GMT+{weatherAPI.RealTimezone} || Temperature: {weatherAPI.Main.CTemp}°C || Pressure: {weatherAPI.Main.Pressure}hPa || Humidity: {weatherAPI.Main.Humidity}% || Clouds: {weatherAPI.Clouds.All}% || Sunrise: {weatherAPI.Sys.SunriseOkayge:HH:mm} Uhr || Sunset: {weatherAPI.Sys.SunsetOkayeg:HH:mm} Uhr");
                     }
                 }
                 else
