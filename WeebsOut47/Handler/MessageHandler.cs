@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using HLE.Emojis;
 using TwitchLib.Client.Models;
 using WeebsOut47.Commands;
 using WeebsOut47.MessageCommands;
+using WeebsOut47.Utilities;
 
 namespace WeebsOut47.Handler
 {
@@ -27,6 +28,10 @@ namespace WeebsOut47.Handler
             else if (ChatMessage.Message.ToLower().Contains("batchest") || ChatMessage.Message.ToLower().Contains("hendrikchest"))
             {
                 new BatChestCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if(ChatMessage.Channel == "pajlada" && ChatMessage.Username == "pajbot" && ChatMessage.GetMessage() == $"pajaS {Emoji.RotatingLight} ALERT")
+            {   
+                new AlertCommand(WeebsOut, ChatMessage).SendMessage();                
             }
         }
     }
