@@ -1,7 +1,6 @@
 ﻿using System;
 using TwitchLib.Client.Models;
 using WeebsOut47.Commands;
-using WeebsOut47.Utilities;
 
 namespace WeebsOut47.MessageCommands 
 {

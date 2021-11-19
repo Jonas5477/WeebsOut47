@@ -17,7 +17,15 @@ namespace WeebsOut47.Handler
         }
         public void Handle()
         {
-            if (ChatMessage.Message.StartsWith("§"))
+            if (ChatMessage.Channel == "weebsout47" && ChatMessage.Username == "jonas5477" && ChatMessage.GetMessage().Contains("pajaS") && ChatMessage.GetMessage().Contains(Emoji.RotatingLight) && ChatMessage.GetMessage().Contains("ALERT"))
+            {
+                new AlertCommand(WeebsOut, ChatMessage).SendMessage();
+            }
+            else if (ChatMessage.Channel == "weebsout47" && ChatMessage.Message.Contains("/me") && ChatMessage.Message.Contains("pajaS") && ChatMessage.Message.Contains(Emoji.RotatingLight) && ChatMessage.Message.Contains("ALERT") && ChatMessage.Message.Contains("!shuffle"))
+            {   
+                AlertCommand.Jebaited = true;
+            }
+            else if(ChatMessage.Message.StartsWith("§"))
             {
                 new CommandHandler(WeebsOut, ChatMessage).SendMessage();
             }
@@ -29,9 +37,9 @@ namespace WeebsOut47.Handler
             {
                 new BatChestCommand(WeebsOut, ChatMessage).SendMessage();
             }
-            else if(ChatMessage.Channel == "pajlada" && ChatMessage.Username == "pajbot" && ChatMessage.GetMessage() == $"pajaS {Emoji.RotatingLight} ALERT")
-            {   
-                new AlertCommand(WeebsOut, ChatMessage).SendMessage();                
+            else if(ChatMessage.Channel == "pajlada")
+            {
+                new AlertCommand(WeebsOut, ChatMessage).SendIrgendneFolgeNachricht();
             }
         }
     }
